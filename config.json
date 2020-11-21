@@ -1,0 +1,7 @@
+{
+    "server": {
+        "server_name": "",
+        "port": 8000,
+        "debug": true
+    }
+}
