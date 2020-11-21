@@ -26,9 +26,6 @@ class POSTLogin(Resource):
         except Exception as exc:
             return error_response(400, 'JSON 파싱 에러가 발생했습니다 : ' + str(exc))
 
-        # Password Encryption
-        hashed = bcrypt.hashpw(pw.encode('utf-8'), bcrypt.gensalt())
-
         # Querying
         try:
             result = app.database.execute(text('''
