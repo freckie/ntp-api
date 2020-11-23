@@ -29,7 +29,7 @@ class POSTLogin(Resource):
         # Querying
         try:
             result = app.database.execute(text('''
-                SELECT count(user_email) AS counts, user_name, user_email, user_pw
+                SELECT count(user_email) AS counts, user_name, user_email, user_pw, user_id
                 FROM user WHERE user_email= :email
             '''),{
                 'email' : email,
@@ -47,6 +47,7 @@ class POSTLogin(Resource):
             return error_response(401, '비밀번호가 잘못되었습니다 : ' + str(exc))
 
         user_claims = {
+            'id': result['user_id'],
             'email': result['user_email'],
             'name': result['user_name']
         }

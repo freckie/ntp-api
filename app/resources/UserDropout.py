@@ -32,9 +32,9 @@ class POSTDropout(Resource):
         try:
             result = app.database.execute(text('''
                 SELECT count(user_email) AS counts, user_email, user_pw
-                FROM user WHERE user_email= :email
+                FROM user WHERE user_id= :id
             '''),{
-                'email' : claims['email'],
+                'id': claims['id']
             }).fetchone()
             if int(result['counts']) == 0:
                 return error_response(500, '존재하지 않는 ID입니다.')
