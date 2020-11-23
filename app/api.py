@@ -7,6 +7,7 @@ from app.resources.UserDuplicate import GETDuplicate
 
 from app.resources.PaymentCredit import VIEWCredit
 from app.resources.PaymentCard import VIEWCard, PUTCard
+from app.resources.PaymentTransaction import GETTransaction, POSTRefund
 
 def build_api(app):
     api = Api()
@@ -20,6 +21,8 @@ def build_api(app):
     api.add_resource(VIEWCredit, '/api/payment/credit')
     api.add_resource(VIEWCard, '/api/payment/card')
     api.add_resource(PUTCard, '/api/payment/card/<card_id>')
+    api.add_resource(GETTransaction, '/api/payment/transaction')
+    api.add_resource(POSTRefund, '/api/payment/transaction/<transaction_id>/refund')
 
     api.init_app(app)
     return api
