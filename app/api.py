@@ -4,7 +4,7 @@ from app.resources.UserSignup import POSTSignup
 from app.resources.UserLogin import POSTLogin
 from app.resources.UserDropout import POSTDropout
 from app.resources.UserDuplicate import GETDuplicate
-from app.resources.UserFace import POSTFace
+from app.resources.UserFace import VIEWFace
 
 from app.resources.PaymentCredit import VIEWCredit
 from app.resources.PaymentCard import VIEWCard, PUTCard
@@ -19,7 +19,7 @@ def build_api(app):
     api.add_resource(POSTLogin, '/api/user/login')
     api.add_resource(POSTDropout, '/api/user/dropout')
     api.add_resource(GETDuplicate, '/api/user/duplicate')
-    api.add_resource(POSTFace, '/api/user/face')
+    api.add_resource(VIEWFace, '/api/user/face')
 
     api.add_resource(VIEWCredit, '/api/payment/credit')
     api.add_resource(VIEWCard, '/api/payment/card')
