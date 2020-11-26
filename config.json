@@ -3,5 +3,9 @@
         "server_name": "",
         "port": 8000,
         "debug": true
+    },
+    "websocket_server": {
+        "server_name": "13.125.228.7",
+        "port": 3000
     }
 }

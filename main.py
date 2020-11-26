@@ -1,5 +1,6 @@
 import sys
 import json
+import websocket
 
 # config
 def load_config(filename):
@@ -18,6 +19,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['JWT_SECRET_KEY'] = 'ntp-team-g'
+app.config['WEBSOCKET_SERVER'] = config['websocket_server']
 if not config['server']['debug']:
     app.config['SERVER_NAME'] = '{}:{}'.format(config['server']['server_name'], str(config['server']['port']))
 
