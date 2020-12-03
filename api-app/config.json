@@ -1,8 +1,8 @@
 {
     "server": {
         "server_name": "0.0.0.0",
-        "port": 10000,
-        "debug": true
+        "port": 8000,
+        "debug": false
     },
     "websocket_server": {
         "server_name": "13.125.228.7",

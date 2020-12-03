@@ -1,6 +1,6 @@
 FROM python:3.8
 
-EXPOSE 10000
+EXPOSE 8000
 
 ADD . /www
 WORKDIR /www
