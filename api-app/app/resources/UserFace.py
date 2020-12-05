@@ -20,7 +20,7 @@ class VIEWFace(Resource):
         claims = get_jwt_claims()
 
         print(request)
-        print(request.body)
+        print(request.json)
 
         # Handle body parameters
         try:
