@@ -24,7 +24,7 @@ class VIEWCredit(Resource):
         try:
             result = app.database.execute(text('''
                 SELECT user_credit
-                FROM user WHERE user_id= :=id;
+                FROM user WHERE user_id= :id;
             '''),{
                 'id': claims['id']
             }).fetchone()
