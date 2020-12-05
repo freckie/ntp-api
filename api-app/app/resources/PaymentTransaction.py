@@ -20,11 +20,10 @@ class GETTransaction(Resource):
         # Querying
         try:
             result = app.database.execute(text('''
-                SELECT t.transaction_id, t.card_id, t.credit_diff, t.created_at, t.transaction_type
-                FROM transaction AS t, card AS c
-                WHERE t.card_id=c.card_id
-                    AND c.user_id= :id
-                ORDER BY t.transaction_id DESC;
+                SELECT transaction_id, transaction_type, user_id, price, location_id, timestamp
+                FROM transaction 
+                WHERE user_id= :id
+                ORDER BY transaction_id DESC;
             '''),{
                 'id': claims['id']
             }).fetchall()
@@ -36,9 +35,10 @@ class GETTransaction(Resource):
             transactions.append({
                 'transaction_id': row['transaction_id'],
                 'transaction_type': row['transaction_type'],
-                'card_id': row['card_id'],
-                'credit_diff': row['credit_diff'],
-                'created_at': str(row['created_at'])
+                'user_id': row['user_id'],
+                'price': row['price'],
+                'location_id': row['location_id'],
+                'timestamp': str(row['timestamp'])
             })
 
         return ok_response({
