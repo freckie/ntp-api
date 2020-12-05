@@ -53,7 +53,7 @@ class POSTLogin(Resource):
         }
         access_token = create_access_token(
             identity=email,
-            expires_delta=timedelta(minutes=30),
+            expires_delta=timedelta(hours=24),
             user_claims=user_claims
         )
         refresh_token = create_refresh_token(
