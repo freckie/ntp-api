@@ -20,6 +20,7 @@ class VIEWFace(Resource):
         if not request.is_json:
             return error_response(400, 'JSON 형식으로 전달해주세요.')
 
+        print(request)
         claims = get_jwt_claims()
 
         # Handle body parameters
