@@ -20,12 +20,11 @@ class VIEWFace(Resource):
         claims = get_jwt_claims()
 
         print(request)
-        print(request.json)
 
         # Handle body parameters
         try:
-            face = request.json.get('face', None)
-            # face = request.form['face']
+            # face = request.json.get('face', None)
+            face = request.form['face']
             if (not face):
                 return error_response(400, '파라미터가 부족합니다.')
         except Exception as exc:
