@@ -36,11 +36,14 @@ class VIEWFace(Resource):
             'user_id': claims['id'],
             'image': face
         })
-        ws_url = 'ws://{}:{}'.format(app.config['WEBSOCKET_SERVER']['server_name'], app.config['WEBSOCKET_SERVER']['port'])
-        ws = create_connection(ws_url)
-        ws.send(payload)
-        resp = ws.recv()
-        ws.close()
+        try:
+            ws_url = 'ws://{}:{}'.format(app.config['WEBSOCKET_SERVER']['server_name'], app.config['WEBSOCKET_SERVER']['port'])
+            ws = create_connection(ws_url)
+            ws.send(payload)
+            resp = ws.recv()
+            ws.close()
+        except Exception as exc:
+            return error_response(500, 'websocket 에러가 발생했습니다 : ' + str(exc))
         
         return ok_response(resp)
     
