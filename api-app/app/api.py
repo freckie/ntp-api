@@ -1,5 +1,7 @@
 # API
 from flask_restful import Api
+
+from app.resources.Test import GETTest
 from app.resources.UserSignup import POSTSignup
 from app.resources.UserLogin import POSTLogin
 from app.resources.UserDropout import POSTDropout
@@ -13,6 +15,8 @@ from app.resources.PaymentMake import POSTMake
 
 def build_api(app):
     api = Api()
+
+    api.add_resource(GETTest, '/api/test')
 
     # 유저 관련
     api.add_resource(POSTSignup, '/api/user/signup')
