@@ -147,3 +147,34 @@ class PUTCard(Resource):
             return error_response(500, str(exc))
 
         return ok_response(None)
+    
+    def delete(self, card_id):
+        claims = get_jwt_claims()
+
+        # Check permission of the card
+        try:
+            result = app.database.execute(text('''
+                SELECT count(card_id) AS counts, user_id
+                FROM card
+                WHERE card_id= :card_id;
+            '''), {
+                'card_id': card_id
+            }).fetchone()
+            if int(result['counts']) == 0:
+                return error_response(404, '존재하지 않는 결제 수단입니다.')
+            if str(result['user_id']) != str(claims['id']):
+                return error_response(403, '해당 결제 수단에 접근할 권한이 없습니다.')
+        except Exception as exc:
+            return error_response(500, str(exc))
+
+        # Querying
+        try:
+            app.database.execute(text('''
+                DELETE FROM card WHERE card_id= :card_id;
+            '''), {
+                'card_id': card_id
+            })
+        except Exception as exc:
+            return error_response(500, str(exc))
+
+        return ok_response(None)
