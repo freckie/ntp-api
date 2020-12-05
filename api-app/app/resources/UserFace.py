@@ -19,7 +19,8 @@ class VIEWFace(Resource):
     def post(self):
         claims = get_jwt_claims()
 
-        print(request.form)
+        print(request)
+        print(request.body)
 
         # Handle body parameters
         try:
