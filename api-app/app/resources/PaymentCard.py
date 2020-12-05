@@ -148,6 +148,8 @@ class PUTCard(Resource):
 
         return ok_response(None)
     
+    @jwt_required
+    @cross_origin()
     def delete(self, card_id):
         claims = get_jwt_claims()
 
