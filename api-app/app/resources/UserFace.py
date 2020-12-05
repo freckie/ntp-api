@@ -17,15 +17,12 @@ class VIEWFace(Resource):
     @jwt_required
     @cross_origin()
     def post(self):
-        if not request.is_json:
-            return error_response(400, 'JSON 형식으로 전달해주세요.')
-
-        print(request)
         claims = get_jwt_claims()
 
         # Handle body parameters
         try:
-            face = request.json.get('face', None)
+            # face = request.json.get('face', None)
+            face = request.form['face']
             if (not face):
                 return error_response(400, '파라미터가 부족합니다.')
         except Exception as exc:
