@@ -19,10 +19,13 @@ class VIEWFace(Resource):
     def post(self):
         claims = get_jwt_claims()
 
+        print(request.form)
+
         # Handle body parameters
         try:
             # face = request.json.get('face', None)
             face = request.form['face']
+            print(face)
             if (not face):
                 return error_response(400, '파라미터가 부족합니다.')
         except Exception as exc:
