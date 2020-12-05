@@ -14,8 +14,6 @@ from sqlalchemy import text
 class POSTLogin(Resource):
     @cross_origin()
     def post(self):
-        print(request)
-        print(request.json())
         if not request.is_json:
             return error_response(400, 'JSON 형식으로 전달해주세요.')
 
