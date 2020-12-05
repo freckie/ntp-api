@@ -85,7 +85,7 @@ class VIEWCredit(Resource):
         app.database.execute(text('''
             INSERT INTO
                 transaction (user_id, price, transaction_type, location_id)
-                VALUES (:user_id, :amount, :type, :location_id);
+                VALUES (:user_id, :price, :type, :location_id);
         '''), {
             'user_id': claims['id'],
             'price': amount,
