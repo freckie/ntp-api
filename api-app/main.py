@@ -47,5 +47,4 @@ from app.api import build_api
 build_api(app)
 
 if __name__ == "__main__":
-    if config['server']['debug']:
-        app.run(debug=True, host='0.0.0.0', port=config['server']['port'])
+    app.run(debug=True, host='0.0.0.0', port=config['server']['port'])

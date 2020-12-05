@@ -84,12 +84,13 @@ class VIEWCredit(Resource):
         # Logging
         app.database.execute(text('''
             INSERT INTO
-                transaction (card_id, credit_diff, transaction_type)
-                VALUES (:card_id, :amount, :type);
+                transaction (user_id, price, transaction_type, location_id)
+                VALUES (:user_id, :amount, :type, :location_id);
         '''), {
-            'card_id': card_id,
-            'amount': amount,
-            'type': 'CHARGE'
+            'user_id': claims['id'],
+            'price': amount,
+            'type': 'charge',
+            'location_id': 0
         })
 
         return ok_response(None)
