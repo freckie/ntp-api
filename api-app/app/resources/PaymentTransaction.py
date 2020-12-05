@@ -20,9 +20,10 @@ class GETTransaction(Resource):
         # Querying
         try:
             result = app.database.execute(text('''
-                SELECT transaction_id, transaction_type, user_id, price, location_id, timestamp
-                FROM transaction 
-                WHERE user_id= :id
+                SELECT t.transaction_id, t.transaction_type, t.user_id, t.price, t.location_id, t.timestamp, u.user_email, u.user_name
+                FROM transaction AS t, user AS u
+                WHERE t.user_id= u.user_id
+                    AND t.user_id= :id
                 ORDER BY transaction_id DESC;
             '''),{
                 'id': claims['id']
@@ -36,6 +37,8 @@ class GETTransaction(Resource):
                 'transaction_id': row['transaction_id'],
                 'transaction_type': row['transaction_type'],
                 'user_id': row['user_id'],
+                'user_name': row['user_name'],
+                'user_email': row['user_email'],
                 'price': row['price'],
                 'location_id': row['location_id'],
                 'timestamp': str(row['timestamp'])
